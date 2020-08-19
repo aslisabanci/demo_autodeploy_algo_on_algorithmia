@@ -1,0 +1,26 @@
+name: Deploy Model to Algorithmia
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  algorithmia-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.0.0
+        with:
+          ref: ${{github.sha}}
+          path: model_dev_repo
+      - name: Deploy Model to Algorithmia
+        uses: aslisabanci/algorithmia_ci_modeldeployment@0.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
+        with:
+          algorithmia_api_key: ${{ secrets.algorithmia_api_key }}
+          current_repo: model_dev_repo
+          notebook_path: test_notebook.ipynb
