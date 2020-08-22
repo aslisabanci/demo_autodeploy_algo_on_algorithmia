@@ -23,4 +23,4 @@ jobs:
         with:
           algorithmia_api_key: ${{ secrets.algorithmia_api_key }}
           current_repo: model_dev_repo
-          notebook_path: test_notebook.ipynb
+          notebook_path: xgboost_on_algorithmia.ipynb
