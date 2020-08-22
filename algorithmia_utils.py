@@ -1,15 +1,4 @@
 import Algorithmia
-import urllib.parse
-from git import Git, Repo, remote
-from retry import retry
-
-
-class Progress(remote.RemoteProgress):
-    def line_dropped(self, line):
-        print(line)
-
-    def update(self, *args):
-        print(self._cur_line)
 
 
 class AlgorithmiaUtils:
@@ -73,16 +62,3 @@ class AlgorithmiaUtils:
         algorithmia_path = "{}/{}".format(algorithmia_data_path, model_name)
         result = self.algo_client.file(algorithmia_path).putFile(local_path)
         # TODO: Act on the result object, have a return value
-
-    # Call algorithm until the algo hash endpoint becomes available, up to 10 seconds
-    @retry(Algorithmia.errors.AlgorithmException, tries=10, delay=1)
-    def call_latest_algo_version(self, input):
-        latest_algo_hash = (
-            self.algo_client.algo(self.algo_namespace).info().version_info.git_hash
-        )
-        algo = self.algo_client.algo(
-            "{}/{}".format(self.algo_namespace, latest_algo_hash)
-        )
-        algo.set_options(timeout=60, stdout=False)
-        algo_pipe_result = algo.pipe(input)
-        return algo_pipe_result
