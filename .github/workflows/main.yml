@@ -24,3 +24,5 @@ jobs:
           algorithmia_api_key: ${{ secrets.algorithmia_api_key }}
           current_repo: model_dev_repo
           notebook_path: xgboost_on_algorithmia.ipynb
+          model_file_name: autodeployed_model.pkl
+          remote_upload_path: data://asli/automated_deploy
