@@ -1,0 +1,7 @@
+numpy
+joblib
+pandas
+scikit-learn
+nltk
+cmake
+xgboost
