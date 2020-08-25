@@ -25,4 +25,4 @@ jobs:
           current_repo: model_dev_repo
           notebook_path: xgboost_on_algorithmia.ipynb
           modelfile_relativepath: /autodeployed_model.pkl
-          algorithmia_uploadpath: data://asli/automated_deploy_v3
+          algorithmia_uploadpath: data://asli/automated_deploy_v4
