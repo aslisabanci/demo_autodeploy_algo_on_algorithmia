@@ -9,12 +9,17 @@ jobs:
   algorithmia-ci:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout algo
+      - name: Checkout algo hosted on Git
         uses: actions/checkout@v2.0.0
         with:
           repository: aslisabanci/EchoText
           token: ${{ secrets.PAT }}
           path: algo-repo
+      - name: Checkout algo hosted on Algorithmia
+        run: |
+          cd $GITHUB_WORKSPACE
+          git clone https://git.algorithmia.com/git/asli/EchoText_algorithmia.git
+          ls -al
 
 #     steps:
 #       - name: Checkout
