@@ -14,12 +14,13 @@ jobs:
         with:
           repository: aslisabanci/EchoText
           token: ${{ secrets.PAT }}
-          path: algo-repo
       - name: Checkout algo hosted on Algorithmia
         run: |
           cd $GITHUB_WORKSPACE
           git clone https://${{ secrets.ALGORITHMIA_USERNAME }}:${{ secrets.ALGORITHMIA_PASSWORD }}@git.algorithmia.com/git/asli/EchoText_algorithmia.git
-          ls -al
+          ls
+          cd EchoText_algorithmia
+          ls
 
 #     steps:
 #       - name: Checkout
