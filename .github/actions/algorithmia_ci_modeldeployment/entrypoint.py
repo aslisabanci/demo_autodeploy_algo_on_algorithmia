@@ -3,7 +3,6 @@
 import os
 from datetime import datetime
 import json
-from typing import AnyStr
 from src import algorithmia_utils, notebook_utils
 
 
@@ -11,15 +10,16 @@ def update_algo_model_config(
     base_path, commit_hash, config_rel_path="model_config.json"
 ):
     full_path = "{}/{}".format(base_path, config_rel_path)
-    with open(full_path, "r+") as json_file:
-        config = json.load(json_file)
-        print("old hash", config["model_origin_commit_hash"])
-        config["model_origin_commit_hash"] = commit_hash
-        json.dump(config, json_file)
+    if os.path.exists(full_path):
+        with open(full_path, "r") as config_file:
+            config = json.load(config_file)
+            print("old hash", config["model_origin_commit_hash"])
 
-    with open(full_path, "r+") as json_file:
-        new_config = json.load(json_file)
-        print("new hash", new_config["model_origin_commit_hash"])
+        config["model_origin_commit_hash"] = commit_hash
+
+        with open(full_path, "w") as new_config_file:
+            print("new hash", config["model_origin_commit_hash"])
+            json.dump(config, new_config_file)
 
 
 if __name__ == "__main__":
