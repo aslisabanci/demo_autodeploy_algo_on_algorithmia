@@ -23,7 +23,7 @@ jobs:
     #       ls
 
     env:
-      algorithmia_username: asli
+      algorithmia_username: aslix
       algorithmia_algoname: EchoText_algorithmia
     steps:
       - name: Checkout
