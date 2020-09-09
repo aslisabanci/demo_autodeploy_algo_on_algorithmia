@@ -3,11 +3,16 @@
 import os
 from datetime import datetime
 import json
+from pyexpat import model
 from src import algorithmia_utils, notebook_utils
 
 
 def update_algo_model_config(
-    base_path, commit_hash, config_rel_path="model_config.json"
+    base_path,
+    github_repo,
+    commit_hash,
+    model_filepath,
+    config_rel_path="model_config.json",
 ):
     full_path = "{}/{}".format(base_path, config_rel_path)
     if os.path.exists(full_path):
@@ -15,7 +20,10 @@ def update_algo_model_config(
             config = json.load(config_file)
             print("old hash", config["model_origin_commit_hash"])
 
+        config["model_filePath"] = model_filepath
         config["model_origin_commit_hash"] = commit_hash
+        config["model_origin_repo"] = github_repo
+        config["model_createdAt_UTC"] = datetime.utcnow()
 
         with open(full_path, "w") as new_config_file:
             print("new hash", config["model_origin_commit_hash"])
@@ -44,19 +52,21 @@ if __name__ == "__main__":
     # TODO: continue checks
 
     if os.path.exists(workspace):
-        algo_dir = "{}/{}".format(workspace, algo_name)
-        update_algo_model_config(algo_dir, current_commit_hash)
-
         # workspace_notebook_path = "{}/{}".format(workspace, notebook_path)
         # print("workspace notebook path:", workspace_notebook_path)
         # notebook_utils.run_notebook(
         #     notebook_path=workspace_notebook_path, execution_path=workspace
         # )
 
-        # model_full_path = "{}/{}".format(workspace, model_rel_path)
-        # algorithmia_utils.upload_model(
-        #     algorithmia_api_key, model_full_path, upload_path
-        # )
+        model_full_path = "{}/{}".format(workspace, model_rel_path)
+        algorithmia_model_path = algorithmia_utils.upload_model(
+            algorithmia_api_key, model_full_path, upload_path, current_commit_hash
+        )
+
+        algo_dir = "{}/{}".format(workspace, algo_name)
+        update_algo_model_config(
+            algo_dir, github_repo, current_commit_hash, algorithmia_model_path
+        )
     else:
         raise Exception(
             "actions/checkout on the local repo must be run before this action can be completed"
