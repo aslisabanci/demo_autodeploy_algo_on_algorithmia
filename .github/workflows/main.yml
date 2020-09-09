@@ -16,13 +16,14 @@ jobs:
           ref: ${{github.sha}}
           path: model_dev_repo
       - name: Deploy Model to Algorithmia
-        uses: aslisabanci/algorithmia_ci_modeldeployment@master
+        #uses: aslisabanci/algorithmia_ci_modeldeployment@master
+        uses: ./algorithmia_ci_modeldeployment
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
         with:
           algorithmia_api_key: ${{ secrets.algorithmia_api_key }}
           current_repo: model_dev_repo
-          notebook_path: xgboost_on_algorithmia.ipynb
+          notebook_path: test_notebook.ipynb
           modelfile_relativepath: /autodeployed_model.pkl
-          algorithmia_uploadpath: data://asli/automated_deploy_v4
+          algorithmia_uploadpath: data://asli/automated_deploy_v5
