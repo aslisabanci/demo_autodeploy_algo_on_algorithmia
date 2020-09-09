@@ -24,7 +24,9 @@ def update_algo_model_config(
         config["model_filePath"] = model_filepath
         config["model_origin_commitHash"] = commit_hash
         config["model_origin_repo"] = github_repo
-        config["model_createdAt_UTC"] = datetime.utcnow()
+        config["model_uploadedAt_UTC"] = datetime.utcnow().strftime(
+            "%Y-%m-%d %H:%M:%S.%f"
+        )
 
         with open(full_path, "w") as new_config_file:
             print("new hash", config["model_origin_commitHash"])
