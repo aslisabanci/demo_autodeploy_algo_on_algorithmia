@@ -4,8 +4,10 @@ import os
 from src import algorithmia_utils, notebook_utils
 
 if __name__ == "__main__":
-    repo_name = os.getenv("INPUT_CURRENT_REPO")
-    repo_path = "/github/workspace/{}".format(repo_name)
+    # repo_name = os.getenv("INPUT_CURRENT_REPO")
+    # repo_path = "/github/workspace/{}".format(repo_name)
+
+    repo_path = "/github/workspace"
 
     algorithmia_api_key = os.getenv("INPUT_ALGORITHMIA_API_KEY")
     notebook_path = os.getenv("INPUT_NOTEBOOK_PATH")
