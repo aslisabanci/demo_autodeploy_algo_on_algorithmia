@@ -7,6 +7,7 @@ from pyexpat import model
 from src import algorithmia_utils, notebook_utils
 
 
+# TODO: If model_config.json doesn't exist, create it from scratch
 def update_algo_model_config(
     base_path,
     github_repo,
@@ -18,15 +19,15 @@ def update_algo_model_config(
     if os.path.exists(full_path):
         with open(full_path, "r") as config_file:
             config = json.load(config_file)
-            print("old hash", config["model_origin_commit_hash"])
+            print("old hash", config["model_origin_commitHash"])
 
         config["model_filePath"] = model_filepath
-        config["model_origin_commit_hash"] = commit_hash
+        config["model_origin_commitHash"] = commit_hash
         config["model_origin_repo"] = github_repo
         config["model_createdAt_UTC"] = datetime.utcnow()
 
         with open(full_path, "w") as new_config_file:
-            print("new hash", config["model_origin_commit_hash"])
+            print("new hash", config["model_origin_commitHash"])
             json.dump(config, new_config_file)
 
 
