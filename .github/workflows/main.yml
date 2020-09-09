@@ -22,11 +22,21 @@ jobs:
     #       cd EchoText_algorithmia
     #       ls
 
+    env:
+      algorithmia_username: asli
+      algorithmia_algoname: EchoText_algorithmia
     steps:
       - name: Checkout
         uses: actions/checkout@v2.0.0
         with:
           ref: ${{github.sha}}
+      - name: Checkout algo hosted on Algorithmia
+        run: |
+          cd $GITHUB_WORKSPACE
+          git clone https://${{ secrets.ALGORITHMIA_USERNAME }}:${{ secrets.ALGORITHMIA_PASSWORD }}@git.algorithmia.com/git/asli/EchoText_algorithmia.git
+          ls
+          cd {{ env.algorithmia_algoname }}
+          ls
       - name: Deploy Model to Algorithmia
         uses: ./.github/actions/algorithmia_ci_modeldeployment
         env:
