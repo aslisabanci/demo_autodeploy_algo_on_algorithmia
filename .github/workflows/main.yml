@@ -23,7 +23,7 @@ jobs:
     #       ls
 
     env:
-      algorithmia_algoname: EchoText_algorithmia
+      ALGORITHMIA_ALGONAME: EchoText_algorithmia
       ALGORITHMIA_USERNAME: ${{ secrets.ALGORITHMIA_USERNAME }}
       ALGORITHMIA_PASSWORD: ${{ secrets.ALGORITHMIA_PASSWORD }}
     steps:
@@ -34,9 +34,9 @@ jobs:
       - name: Checkout algo hosted on Algorithmia
         run: |
           cd $GITHUB_WORKSPACE
-          git clone https://"$ALGORITHMIA_USERNAME":"$ALGORITHMIA_PASSWORD"@git.algorithmia.com/git/asli/EchoText_algorithmia.git
+          git clone https://"$ALGORITHMIA_USERNAME":"$ALGORITHMIA_PASSWORD"@git.algorithmia.com/git/"$ALGORITHMIA_USERNAME"/"$ALGORITHMIA_ALGONAME".git
           ls
-          cd {{ env.algorithmia_algoname }}
+          cd "$ALGORITHMIA_ALGONAME"
           ls
       - name: Deploy Model to Algorithmia
         uses: ./.github/actions/algorithmia_ci_modeldeployment
