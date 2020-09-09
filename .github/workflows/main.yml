@@ -29,7 +29,7 @@ jobs:
           ref: ${{github.sha}}
           path: model_dev_repo
       - name: Deploy Model to Algorithmia
-        uses: ./model_dev_repo/.github/actions/algorithmia_ci_modeldeployment
+        uses: ../model_dev_repo/.github/actions/algorithmia_ci_modeldeployment
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
