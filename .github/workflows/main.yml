@@ -35,11 +35,6 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           git clone https://"$ALGORITHMIA_USERNAME":"$ALGORITHMIA_PASSWORD"@git.algorithmia.com/git/"$ALGORITHMIA_USERNAME"/"$ALGORITHMIA_ALGONAME".git
-          pwd
-          ls
-          cd "$ALGORITHMIA_ALGONAME"
-          pwd
-          ls
       - name: Deploy Model to Algorithmia
         uses: ./.github/actions/algorithmia_ci_modeldeployment
         env:
@@ -51,3 +46,14 @@ jobs:
           notebook_path: test_notebook.ipynb
           modelfile_relativepath: /autodeployed_model.pkl
           algorithmia_uploadpath: data://asli/automated_deploy_v1
+      - name: Push Updates to Algorithmia Repo
+        run: |
+          cd "$ALGORITHMIA_ALGONAME" 
+          pwd
+          ls
+          git config --global user.name "$ALGORITHMIA_USERNAME"
+          git config --global user.email "asabanci+githubCI@algorithmia.io"
+
+          git add . 
+          git commit -m "Updated model config file via Github CI"
+          git push
