@@ -54,6 +54,6 @@ jobs:
           git config --global user.name "$ALGORITHMIA_USERNAME"
           git config --global user.email "asabanci+githubCI@algorithmia.io"
 
-          git add model_config.json
+          git add .
           git commit -m "Updated model config file via Github CI"
           git push
