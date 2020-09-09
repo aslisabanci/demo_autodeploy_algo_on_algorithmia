@@ -3,7 +3,6 @@
 import os
 from datetime import datetime
 import json
-from os import PathLike
 from typing import AnyStr
 from src import algorithmia_utils, notebook_utils
 
@@ -24,7 +23,7 @@ if __name__ == "__main__":
     github_repo = os.getenv("GITHUB_REPOSITORY")
     utc_timestamp = datetime.utcnow()
 
-    workspace: AnyStr[PathLike] = os.getenv("GITHUB_WORKSPACE")
+    workspace = os.getenv("GITHUB_WORKSPACE")
 
     algorithmia_api_key = os.getenv("INPUT_ALGORITHMIA_API_KEY")
     notebook_path = os.getenv("INPUT_NOTEBOOK_PATH")
