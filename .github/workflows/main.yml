@@ -24,8 +24,8 @@ jobs:
 
     env:
       algorithmia_algoname: EchoText_algorithmia
-      ALGORITHMIA_USERNAME: ${{ env.ALGORITHMIA_USERNAME }}
-      ALGORITHMIA_PASSWORD: ${{ env.ALGORITHMIA_PASSWORD }}
+      ALGORITHMIA_USERNAME: ${{ secrets.ALGORITHMIA_USERNAME }}
+      ALGORITHMIA_PASSWORD: ${{ secrets.ALGORITHMIA_PASSWORD }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2.0.0
