@@ -12,4 +12,3 @@ def upload_model(api_key, local_path, remote_path):
     result = algo_client.file(full_path).putFile(local_path)
     # TODO: Act on the result object, have a return value
     print(result)
-
