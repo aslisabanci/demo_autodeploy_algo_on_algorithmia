@@ -5,7 +5,7 @@ import os
 def upload_model(api_key, local_path, remote_path, commit_hash):
     _, model_name = os.path.split(local_path)
     name_before_ext, ext = tuple(os.path.splitext(model_name))
-    unique_model_name = "{}_{}.{}".format(name_before_ext, commit_hash, ext)
+    unique_model_name = "{}_{}{}".format(name_before_ext, commit_hash, ext)
     print(
         "will upload {} from {} to {}".format(
             unique_model_name, local_path, remote_path
