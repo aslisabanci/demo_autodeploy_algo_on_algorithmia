@@ -8,22 +8,8 @@ on:
 jobs:
   algorithmia-ci:
     runs-on: ubuntu-latest
-    # steps:
-    #   - name: Checkout algo hosted on Git
-    #     uses: actions/checkout@v2.0.0
-    #     with:
-    #       repository: aslisabanci/EchoText
-    #       token: ${{ secrets.PAT }}
-    #   - name: Checkout algo hosted on Algorithmia
-    #     run: |
-    #       cd $GITHUB_WORKSPACE
-    #       git clone https://${{ secrets.ALGORITHMIA_USERNAME }}:${{ secrets.ALGORITHMIA_PASSWORD }}@git.algorithmia.com/git/asli/EchoText_algorithmia.git
-    #       ls
-    #       cd EchoText_algorithmia
-    #       ls
-
     env:
-      ALGORITHMIA_ALGONAME: EchoText_algorithmia
+      ALGORITHMIA_ALGONAME: xgboost_automated
       ALGORITHMIA_USERNAME: ${{ secrets.ALGORITHMIA_USERNAME }}
       ALGORITHMIA_PASSWORD: ${{ secrets.ALGORITHMIA_PASSWORD }}
     steps:
@@ -48,12 +34,9 @@ jobs:
           algorithmia_uploadpath: data://asli/automated_deploy_v1
       - name: Push Updates to Algorithmia Repo
         run: |
-          cd "$ALGORITHMIA_ALGONAME" 
-          pwd
-          ls
+          cd "$ALGORITHMIA_ALGONAME"
           git config --global user.name "$ALGORITHMIA_USERNAME"
           git config --global user.email "asabanci+githubCI@algorithmia.io"
-
           git add .
           git commit -m "Updated model config file via Github CI"
           git push
