@@ -21,6 +21,8 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           git clone https://"$ALGORITHMIA_USERNAME":"$ALGORITHMIA_PASSWORD"@git.algorithmia.com/git/"$ALGORITHMIA_USERNAME"/"$ALGORITHMIA_ALGONAME".git
+          pwd
+          ls
       - name: Deploy Model to Algorithmia
         uses: ./.github/actions/algorithmia_ci_modeldeployment
         env:
