@@ -55,11 +55,11 @@ if __name__ == "__main__":
     # TODO: continue checks
 
     if os.path.exists(workspace):
-        # workspace_notebook_path = "{}/{}".format(workspace, notebook_path)
-        # print("workspace notebook path:", workspace_notebook_path)
-        # notebook_utils.run_notebook(
-        #     notebook_path=workspace_notebook_path, execution_path=workspace
-        # )
+        workspace_notebook_path = "{}/{}".format(workspace, notebook_path)
+        print("workspace notebook path:", workspace_notebook_path)
+        notebook_utils.run_notebook(
+            notebook_path=workspace_notebook_path, execution_path=workspace
+        )
 
         model_full_path = "{}/{}".format(workspace, model_rel_path)
         algorithmia_model_path = algorithmia_utils.upload_model(
