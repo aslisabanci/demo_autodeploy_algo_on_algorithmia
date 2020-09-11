@@ -8,6 +8,15 @@ if __name__ == "__main__":
     current_commit_hash = os.getenv("GITHUB_SHA")
     github_repo = os.getenv("GITHUB_REPOSITORY")
     workspace = os.getenv("GITHUB_WORKSPACE")
+    github_context = os.getenv("GITHUB_CONTEXT")
+    commit_msg = ""
+    try:
+        commit_msg = github_context["event"]["head_commit"]["message"]
+        print(commit_msg)
+    except KeyError:
+        print(
+            f"Cannot get the commit message for the trigger event out of our GITHUB_CONTEXT: {github_context}"
+        )
 
     algorithmia_api_key = os.getenv("INPUT_ALGORITHMIA_API_KEY")
     notebook_path = os.getenv("INPUT_NOTEBOOK_PATH")

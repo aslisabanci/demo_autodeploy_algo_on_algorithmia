@@ -21,28 +21,28 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
-      # - name: Checkout algo hosted on Algorithmia
-      #   run: |
-      #     cd $GITHUB_WORKSPACE
-      #     git clone https://"$ALGORITHMIA_USERNAME":"$ALGORITHMIA_PASSWORD"@git.algorithmia.com/git/"$ALGORITHMIA_USERNAME"/"$ALGORITHMIA_ALGONAME".git
-      #     pwd
-      #     ls
-      # - name: Deploy Model to Algorithmia
-      #   uses: ./.github/actions/algorithmia_ci_modeldeployment
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
-      #   with:
-      #     algorithmia_api_key: ${{ secrets.algorithmia_api_key }}
-      #     current_repo: model_dev_repo
-      #     notebook_path: xgboost_on_algorithmia.ipynb
-      #     modelfile_relativepath: ./autodeployed_model.pkl
-      #     algorithmia_uploadpath: data://asli/automated_deploy_v1
-      # - name: Push Updates to Algorithmia Repo
-        # run: |
-        #   cd "$ALGORITHMIA_ALGONAME"
-        #   git config --global user.name "$ALGORITHMIA_USERNAME"
-        #   git config --global user.email "asabanci+githubCI@algorithmia.io"
-        #   git add .
-        #   git commit -m "Updated model config file via Github CI"
-        #   git push
+      - name: Checkout algo hosted on Algorithmia
+        run: |
+          cd $GITHUB_WORKSPACE
+          git clone https://"$ALGORITHMIA_USERNAME":"$ALGORITHMIA_PASSWORD"@git.algorithmia.com/git/"$ALGORITHMIA_USERNAME"/"$ALGORITHMIA_ALGONAME".git
+          pwd
+          ls
+      - name: Deploy Model to Algorithmia
+        uses: ./.github/actions/algorithmia_ci_modeldeployment
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
+        with:
+          algorithmia_api_key: ${{ secrets.algorithmia_api_key }}
+          current_repo: model_dev_repo
+          notebook_path: xgboost_on_algorithmia.ipynb
+          modelfile_relativepath: ./autodeployed_model.pkl
+          algorithmia_uploadpath: data://asli/automated_deploy_v1
+      - name: Push Updates to Algorithmia Repo
+        run: |
+          cd "$ALGORITHMIA_ALGONAME"
+          git config --global user.name "$ALGORITHMIA_USERNAME"
+          git config --global user.email "asabanci+githubCI@algorithmia.io"
+          git add .
+          git commit -m "Updated model config file via Github CI"
+          git push
