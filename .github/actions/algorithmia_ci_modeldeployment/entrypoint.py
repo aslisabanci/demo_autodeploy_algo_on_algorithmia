@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import os
-from datetime import datetime
 from src import algorithmia_utils, notebook_utils
 
 
@@ -11,8 +10,6 @@ if __name__ == "__main__":
 
     current_commit_hash = os.getenv("GITHUB_SHA")
     github_repo = os.getenv("GITHUB_REPOSITORY")
-    utc_timestamp = datetime.utcnow()
-
     workspace = os.getenv("GITHUB_WORKSPACE")
 
     algorithmia_api_key = os.getenv("INPUT_ALGORITHMIA_API_KEY")
