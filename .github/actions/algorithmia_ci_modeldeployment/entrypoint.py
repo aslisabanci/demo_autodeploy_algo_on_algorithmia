@@ -5,11 +5,10 @@ from src import algorithmia_utils, notebook_utils
 
 
 if __name__ == "__main__":
-    current_commit_hash = os.getenv("GITHUB_SHA")
     github_repo = os.getenv("GITHUB_REPOSITORY")
     workspace = os.getenv("GITHUB_WORKSPACE")
     commit_msg = os.getenv("HEAD_COMMIT_MSG")
-    print(commit_msg)
+    commit_hash = os.getenv("GITHUB_SHA")
 
     algorithmia_api_key = os.getenv("INPUT_ALGORITHMIA_API_KEY")
     notebook_path = os.getenv("INPUT_NOTEBOOK_PATH")
@@ -34,12 +33,12 @@ if __name__ == "__main__":
         # TODO: Return an error if the model file doesn't exist
         model_full_path = "{}/{}".format(workspace, model_rel_path)
         algorithmia_model_path = algorithmia_utils.upload_model(
-            algorithmia_api_key, model_full_path, upload_path, current_commit_hash
+            algorithmia_api_key, model_full_path, upload_path, commit_hash
         )
 
         algo_dir = "{}/{}".format(workspace, algo_name)
         algorithmia_utils.update_algo_model_config(
-            algo_dir, github_repo, current_commit_hash, algorithmia_model_path
+            algo_dir, github_repo, commit_hash, commit_msg, algorithmia_model_path
         )
     else:
         raise Exception(
