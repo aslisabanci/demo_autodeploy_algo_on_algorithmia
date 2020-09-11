@@ -36,6 +36,7 @@ def update_algo_model_config(
             config = json.load(config_file)
             print("old hash", config["model_origin_commithash"])
 
+        # TODO: How about also getting the commit msg? Can we get that from github?
         config["model_filepath"] = model_filepath
         config["model_origin_commithash"] = commit_hash
         config["model_origin_repo"] = github_repo
