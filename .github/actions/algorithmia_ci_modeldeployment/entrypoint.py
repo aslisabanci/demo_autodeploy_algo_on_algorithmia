@@ -2,35 +2,7 @@
 
 import os
 from datetime import datetime
-import json
-from pyexpat import model
 from src import algorithmia_utils, notebook_utils
-
-
-# TODO: If model_config.json doesn't exist, create it from scratch
-def update_algo_model_config(
-    base_path,
-    github_repo,
-    commit_hash,
-    model_filepath,
-    config_rel_path="model_config.json",
-):
-    full_path = "{}/{}".format(base_path, config_rel_path)
-    if os.path.exists(full_path):
-        with open(full_path, "r") as config_file:
-            config = json.load(config_file)
-            print("old hash", config["model_origin_commitHash"])
-
-        config["model_filePath"] = model_filepath
-        config["model_origin_commitHash"] = commit_hash
-        config["model_origin_repo"] = github_repo
-        config["model_uploadedAt_UTC"] = datetime.utcnow().strftime(
-            "%Y-%m-%d %H:%M:%S.%f"
-        )
-
-        with open(full_path, "w") as new_config_file:
-            print("new hash", config["model_origin_commitHash"])
-            json.dump(config, new_config_file)
 
 
 if __name__ == "__main__":
@@ -67,7 +39,7 @@ if __name__ == "__main__":
         )
 
         algo_dir = "{}/{}".format(workspace, algo_name)
-        update_algo_model_config(
+        algorithmia_utils.update_algo_model_config(
             algo_dir, github_repo, current_commit_hash, algorithmia_model_path
         )
     else:
