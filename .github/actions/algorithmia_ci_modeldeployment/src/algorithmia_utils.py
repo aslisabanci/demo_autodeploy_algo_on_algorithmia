@@ -49,3 +49,9 @@ def update_algo_model_config(
     else:
         # TODO: If model_config.json doesn't exist, create it from scratch
         pass
+
+
+# TODO: Update the notebook with new walk through text.
+# TODO: Add another example with an algorithm hosted on Github, instead of Algorithmia.
+# TODO: Rename action steps
+# TODO: Encapsulate model name, algo name extraction script

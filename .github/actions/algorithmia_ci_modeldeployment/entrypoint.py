@@ -5,9 +5,6 @@ from src import algorithmia_utils, notebook_utils
 
 
 if __name__ == "__main__":
-    # repo_name = os.getenv("INPUT_CURRENT_REPO")
-    # repo_path = "/github/workspace/{}".format(repo_name)
-
     current_commit_hash = os.getenv("GITHUB_SHA")
     github_repo = os.getenv("GITHUB_REPOSITORY")
     workspace = os.getenv("GITHUB_WORKSPACE")
@@ -21,15 +18,18 @@ if __name__ == "__main__":
 
     if not algorithmia_api_key:
         raise Exception("field 'algorithmia_api_key' not defined in workflow")
-    # TODO: continue checks
+    # TODO: Implement missing key checks
 
     if os.path.exists(workspace):
+
+        # TODO: Implement this as an optional step
         workspace_notebook_path = "{}/{}".format(workspace, notebook_path)
         print("workspace notebook path:", workspace_notebook_path)
         notebook_utils.run_notebook(
             notebook_path=workspace_notebook_path, execution_path=workspace
         )
 
+        # TODO: Return an error if the model file doesn't exist
         model_full_path = "{}/{}".format(workspace, model_rel_path)
         algorithmia_model_path = algorithmia_utils.upload_model(
             algorithmia_api_key, model_full_path, upload_path, current_commit_hash
