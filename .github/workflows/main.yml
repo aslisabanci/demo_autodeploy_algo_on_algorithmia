@@ -32,7 +32,7 @@ jobs:
           algorithmia_api_key: ${{ secrets.algorithmia_api_key }}
           current_repo: model_dev_repo
           notebook_path: test_notebook.ipynb
-          modelfile_relativepath: /autodeployed_model.pkl
+          modelfile_relativepath: ./autodeployed_model.pkl
           algorithmia_uploadpath: data://asli/automated_deploy_v1
       - name: Push Updates to Algorithmia Repo
         run: |
