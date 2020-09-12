@@ -42,10 +42,10 @@ def update_algo_model_config(
     if os.path.exists(full_path):
         with open(full_path, "r") as config_file:
             config = json.load(config_file)
-            print("old hash", config["model_origin_commithash"])
+            print("old hash", config["model_origin_commit_hash"])
 
         config["model_filepath"] = model_filepath
-        config["model_origin_commithash"] = commit_hash
+        config["model_origin_commit_hash"] = commit_hash
         config["model_origin_commit_msg"] = commit_msg
         config["model_origin_repo"] = github_repo
         config["model_uploaded_utc"] = datetime.utcnow().strftime(
@@ -53,7 +53,7 @@ def update_algo_model_config(
         )
 
         with open(full_path, "w") as new_config_file:
-            print("new hash", config["model_origin_commithash"])
+            print("new hash", config["model_origin_commit_hash"])
             json.dump(config, new_config_file)
     else:
         # TODO: If model_config.json doesn't exist, create it from scratch
