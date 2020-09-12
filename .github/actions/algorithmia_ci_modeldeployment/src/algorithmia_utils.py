@@ -38,28 +38,21 @@ def update_algo_model_config(
     model_filepath,
     config_rel_path="model_config.json",
 ):
+    config = {}
     full_path = "{}/{}".format(base_path, config_rel_path)
     if os.path.exists(full_path):
         with open(full_path, "r") as config_file:
             config = json.load(config_file)
-            print("old hash", config["model_origin_commit_hash"])
 
-        config["model_filepath"] = model_filepath
-        config["model_origin_commit_hash"] = commit_hash
-        config["model_origin_commit_msg"] = commit_msg
-        config["model_origin_repo"] = github_repo
-        config["model_uploaded_utc"] = datetime.utcnow().strftime(
-            "%Y-%m-%d %H:%M:%S.%f"
-        )
+    config["model_filepath"] = model_filepath
+    config["model_origin_commit_hash"] = commit_hash
+    config["model_origin_commit_msg"] = commit_msg
+    config["model_origin_repo"] = github_repo
+    config["model_uploaded_utc"] = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S.%f")
 
-        with open(full_path, "w") as new_config_file:
-            print("new hash", config["model_origin_commit_hash"])
-            json.dump(config, new_config_file)
-    else:
-        # TODO: If model_config.json doesn't exist, create it from scratch
-        pass
+    with open(full_path, "w") as new_config_file:
+        json.dump(config, new_config_file)
 
 
 # TODO: Update the notebook with new walk through text.
 # TODO: Add another example with an algorithm hosted on Github, instead of Algorithmia.
-# TODO: Rename action steps
