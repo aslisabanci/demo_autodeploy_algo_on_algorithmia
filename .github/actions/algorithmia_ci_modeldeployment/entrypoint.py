@@ -32,14 +32,18 @@ if __name__ == "__main__":
 
         # TODO: Return an error if the model file doesn't exist
         model_full_path = "{}/{}".format(workspace, model_rel_path)
-        algorithmia_model_path = algorithmia_utils.upload_model(
+        algorithmia_upload_path = algorithmia_utils.upload_model(
             algorithmia_api_key, model_full_path, upload_path, commit_hash
         )
-
-        algo_dir = "{}/{}".format(workspace, algo_name)
-        algorithmia_utils.update_algo_model_config(
-            algo_dir, github_repo, commit_hash, commit_msg, algorithmia_model_path
-        )
+        if algorithmia_upload_path:
+            algo_dir = "{}/{}".format(workspace, algo_name)
+            algorithmia_utils.update_algo_model_config(
+                algo_dir, github_repo, commit_hash, commit_msg, algorithmia_upload_path
+            )
+        else:
+            raise Exception(
+                "Could not upload model to Algorithmia. Algorithm configuration is not changed."
+            )
     else:
         raise Exception(
             "actions/checkout on the local repo must be run before this action can be completed"
