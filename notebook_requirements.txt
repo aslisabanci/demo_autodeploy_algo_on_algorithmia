@@ -1,7 +1,3 @@
-# Required for Algorithma utility script
-pyyaml 
-
-# Required for model development
 numpy
 joblib
 pandas

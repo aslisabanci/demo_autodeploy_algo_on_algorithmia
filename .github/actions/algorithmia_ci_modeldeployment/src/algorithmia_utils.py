@@ -4,6 +4,14 @@ import json
 from datetime import datetime
 
 
+from Algorithmia.acl import ReadAcl
+
+client = Algorithmia.client("sim0/CA0mCa6Xz3FAkyoHb45G5I1")
+example_collection = client.dir("data://asli/automated_deploy_v1/")
+print(example_collection)
+print(example_collection.path)
+
+
 def upload_model(api_key, local_path, remote_path, commit_hash):
     _, model_name = os.path.split(local_path)
     name_before_ext, ext = tuple(os.path.splitext(model_name))
