@@ -24,7 +24,13 @@ jobs:
           pwd
           ls
       - name: Deploy to Algorithmia
-        uses: ./.github/actions/algorithmia_ci_modeldeployment
+        #Using the action from another repo or a marketplace link
+        uses: aslisabanci/algorithmia_ci_modeldeployment@master
+        #Using a locally embedded Github action:
+        #uses: ./.github/actions/algorithmia_ci_modeldeployment
+        run: |
+          pwd
+          ls
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
