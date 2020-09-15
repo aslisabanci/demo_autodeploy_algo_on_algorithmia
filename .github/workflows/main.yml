@@ -1,4 +1,4 @@
-name: Deploy Model & Algorithm to Algorithmia
+name: Deploy to Algorithmia
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ALGORITHMIA_ALGONAME: xgboost_test
-      ALGORITHMIA_USERNAME: ${{ secrets.ALGORITHMIA_USERNAME }}
+      ALGORITHMIA_USERNAME: asli
       ALGORITHMIA_PASSWORD: ${{ secrets.ALGORITHMIA_PASSWORD }}
     steps:
       - name: Checkout Main Repo
@@ -34,12 +34,12 @@ jobs:
           algorithmia_api_key: ${{ secrets.algorithmia_api_key }}
           notebook_path: xgboost_on_algorithmia.ipynb
           modelfile_relativepath: ./autodeployed_model.pkl
-          algorithmia_uploadpath: data://asli/automated_deploy_v1
+          algorithmia_uploadpath: data://"$ALGORITHMIA_USERNAME"/"$ALGORITHMIA_ALGONAME"/automated_deploy
       - name: Push Updates to Algorithmia Repo
         run: |
           cd "$ALGORITHMIA_ALGONAME"
           git config --global user.name "$ALGORITHMIA_USERNAME"
           git config --global user.email "asabanci+githubCI@algorithmia.io"
           git add .
-          git commit -m "Updated model config file via Github CI"
+          git commit -m "Automated deployment via Github CI"
           git push
