@@ -2,7 +2,7 @@
 
 This is an example repository demonstrating an automated workflow between Github and Algorithmia where:
 - You have an algorithm on Algorithmia as the scalable inference endpoint for your ML model. 
-- Your algorithm's repository host is Algorithmia. Check [out this demo repo for an algorith with Github as the repository host](https://github.com/aslisabanci/demo_autodeploy_algo_on_github)
+- Your algorithm's repository host is Algorithmia. Check [out this demo repo for an algorithm with Github as the repository host](https://github.com/aslisabanci/demo_autodeploy_algo_on_github)
 - You are either 
   - using a Jupyter notebook to train and evaluate your ML model and to create your inference script & dependencies
   - checking your saved model file into your repository
