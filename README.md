@@ -9,7 +9,7 @@ This is an example repository demonstrating an automated workflow between Github
 
 And to automatize your model deployment to Algorithmia, you are using an awesome Github Actions workflow!
 
-This example workflow helps you deploy your model to Algorithmia and update your inference API to use the new model, whenever you do a Git push to your repository. 
+This example workflow helps you deploy your model to Algorithmia and update your inference API to use the new model, whenever you do a Git push to your `master` branch. 
 
 Depending on your model development preference:
   - If you're developing your ML model on a Jupyter notebook, you can configure the workflow with the notebook path and tell it where to save the model file. In this case, the workflow will run the notebook on the CI worker machine's from-scratch environment. Through our utility script, your notebook will get the path for where to save the ML model object. 
