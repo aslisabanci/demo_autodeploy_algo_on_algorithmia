@@ -21,7 +21,10 @@ To get your inference endpoint use this newly uploaded model, the workflow will 
 
 In addition to that, a manifest file will inform you with model metadata such as:
 - Which Github repository was this model file uploaded from?
+- What was the MD5 hash of your model file when it was first created?
 - What is the Github commit SHA and the commit message resulting in this automated upload?
 - When did this upload happen?
+
+By using this manifest, your inference script will know which model to load and use. It can also calculate the loaded model file's MD5 hash with the original MD5 hash that was calculated at the time of the upload, and make sure that the model file hasn't been changed.  
 
 Cool, right? To see the inference algorithm for this repository's XGBoost sentiment analysis model, check out the [automated XGBoost example algorithm on Algorithmia](https://algorithmia.com/algorithms/asli/xgboost_automated).
