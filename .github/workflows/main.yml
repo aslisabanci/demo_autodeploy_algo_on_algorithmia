@@ -9,9 +9,10 @@ jobs:
   algorithmia-CI-deployment:
     runs-on: ubuntu-latest
     env:
-      ALGORITHMIA_ALGONAME: demo1
+      ALGORITHMIA_ALGONAME: demo_jameskenny
       ALGORITHMIA_USERNAME: asli
       ALGORITHMIA_PASSWORD: ${{ secrets.ALGORITHMIA_PASSWORD }}
+      # make git host parametric
     steps:
       - name: Checkout Main Repo
         uses: actions/checkout@v2.0.0
