@@ -9,7 +9,7 @@ jobs:
   algorithmia-CI-deployment:
     runs-on: ubuntu-latest
     env:
-      ALGORITHMIA_ALGONAME: xgboost_automated
+      ALGORITHMIA_ALGONAME: demo1
       ALGORITHMIA_USERNAME: asli
       ALGORITHMIA_PASSWORD: ${{ secrets.ALGORITHMIA_PASSWORD }}
     steps:
