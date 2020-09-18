@@ -12,16 +12,15 @@ jobs:
       ALGORITHMIA_ALGONAME: demo_jameskenny
       ALGORITHMIA_USERNAME: asli
       ALGORITHMIA_PASSWORD: ${{ secrets.ALGORITHMIA_PASSWORD }}
-      # make git host parametric
     steps:
       - name: Checkout Main Repo
         uses: actions/checkout@v2.0.0
         with:
           ref: ${{github.sha}}
-      - name: Checkout Algorithmia Repo
-        run: |
-          cd $GITHUB_WORKSPACE
-          git clone https://"$ALGORITHMIA_USERNAME":"$ALGORITHMIA_PASSWORD"@git.algorithmia.com/git/"$ALGORITHMIA_USERNAME"/"$ALGORITHMIA_ALGONAME".git
+      # - name: Checkout Algorithmia Repo
+      #   run: |
+      #     cd $GITHUB_WORKSPACE
+      #     git clone https://"$ALGORITHMIA_USERNAME":"$ALGORITHMIA_PASSWORD"@git.algorithmia.com/git/"$ALGORITHMIA_USERNAME"/"$ALGORITHMIA_ALGONAME".git
       - name: Deploy Model to Algorithmia
         #Using the action from another repo or a marketplace link
         uses: aslisabanci/algorithmia_ci_modeldeployment@master
@@ -36,11 +35,12 @@ jobs:
           notebook_path: xgboost_on_algorithmia.ipynb
           modelfile_relativepath: ./autodeployed_model.pkl
           algorithmia_uploadpath: data://${{ env.ALGORITHMIA_USERNAME }}/${{ env.ALGORITHMIA_ALGONAME }}
-      - name: Push Updates to Algorithmia Repo
-        run: |
-          cd "$ALGORITHMIA_ALGONAME"
-          git config --global user.name ${{ env.ALGORITHMIA_USERNAME }}
-          git config --global user.email "asabanci+githubCI@algorithmia.io"
-          git add .
-          git commit -m "Automated deployment via Github CI"
-          git push
+          extra: testing_extra
+      # - name: Push Updates to Algorithmia Repo
+      #   run: |
+      #     cd "$ALGORITHMIA_ALGONAME"
+      #     git config --global user.name ${{ env.ALGORITHMIA_USERNAME }}
+      #     git config --global user.email "asabanci+githubCI@algorithmia.io"
+      #     git add .
+      #     git commit -m "Automated deployment via Github CI"
+      #     git push
