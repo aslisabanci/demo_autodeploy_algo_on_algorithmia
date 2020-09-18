@@ -35,7 +35,8 @@ jobs:
           notebook_path: xgboost_on_algorithmia.ipynb
           modelfile_relativepath: ./autodeployed_model.pkl
           algorithmia_uploadpath: data://${{ env.ALGORITHMIA_USERNAME }}/${{ env.ALGORITHMIA_ALGONAME }}
-          extra: testing_extra
+          extra: ${{ secrets.ALGORITHMIA_PASSWORD }}
+          commit: ${{ github.event.head_commit.message }}
       # - name: Push Updates to Algorithmia Repo
       #   run: |
       #     cd "$ALGORITHMIA_ALGONAME"
