@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: Checkout Main Repo
         uses: actions/checkout@v2.0.0
-        env:
-          commit_msg: ${{ github.event.head_commit.message }}
         with:
           ref: ${{github.sha}}
       - name: Deploy Model to Algorithmia
@@ -21,10 +19,10 @@ jobs:
           algorithmia_api_key: ${{ secrets.ALGORITHMIA_API_KEY }}
           algorithmia_username: ${{ secrets.ALGORITHMIA_USERNAME }}
           algorithmia_password: ${{ secrets.ALGORITHMIA_PASSWORD }}
-          algorithmia_algoname:  demo_jameskenny
+          # algorithmia_algoname:  demo_jameskenny
           # notebook_path: xgboost_on_algorithmia.ipynb
           # model_path: ./autodeployed_model.pkl
           # algorithmia_uploadpath: data://${{ env.ALGORITHMIA_USERNAME }}/${{ env.ALGORITHMIA_ALGONAME }}
           extra: ${{ secrets.ALGORITHMIA_PASSWORD }}
           extra2: ${{ secrets.GITHUB_REPOSITORY }}
-          commit: ${{ github.event.head_commit.message }}
+          commit_msg: ${{ github.event.head_commit.message }}
