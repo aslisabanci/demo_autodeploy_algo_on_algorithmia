@@ -1,3 +1,5 @@
+# This script is a standalone .py file and edited manually in model dev repo.
+
 import Algorithmia
 import json
 import os.path
