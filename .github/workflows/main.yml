@@ -21,6 +21,6 @@ jobs:
           algorithmia_password: ${{ secrets.ALGORITHMIA_PASSWORD }}
           algorithmia_algoname:  demo_jameskenny
           # notebook_path: xgboost_on_algorithmia.ipynb
-          # model_path: ./specific_model.pkl
+          # model_path: specific_model.pkl
           # algorithmia_uploadpath: data://${{ env.ALGORITHMIA_USERNAME }}/${{ env.ALGORITHMIA_ALGONAME }}
           commit_msg: ${{ github.event.head_commit.message }}
