@@ -8,18 +8,18 @@ on:
 jobs:
   algorithmia-CI-deployment:
     runs-on: ubuntu-latest
-    env:
-      FIRST_HEAD_COMMIT_MSG:  ${{ github.event.head_commit.message }}
     steps:
       - name: Checkout Main Repo
         uses: actions/checkout@v2.0.0
+        env:
+          CHECKOUT_COMMIT_MSG:  ${{ github.event.head_commit.message }}
         with:
           ref: ${{github.sha}}
       - name: Deploy Model to Algorithmia
         uses: aslisabanci/algorithmia_ci_modeldeployment@master
-        env:
-          HEAD_COMMIT_MSG: ${{ github.event.head_commit.message }}
-          commit_msg: ${{ github.event.head_commit.message }}
+        # env:
+        #   HEAD_COMMIT_MSG: ${{ github.event.head_commit.message }}
+        #   commit_msg: ${{ github.event.head_commit.message }}
         with:
           algorithmia_api_key: ${{ secrets.ALGORITHMIA_API_KEY }}
           algorithmia_username: ${{ secrets.ALGORITHMIA_USERNAME }}
