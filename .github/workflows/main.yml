@@ -18,6 +18,7 @@ jobs:
         with:
           algorithmia_api_key: ${{ secrets.ALGORITHMIA_API_KEY }}
           algorithmia_username: ${{ secrets.ALGORITHMIA_USERNAME }}
+          algorithmia_email: ${{ secrets.ALGORITHMIA_EMAIL }}
           algorithmia_password: ${{ secrets.ALGORITHMIA_PASSWORD }}
           algorithmia_algoname:  demo_jameskenny
           # notebook_path: xgboost_on_algorithmia.ipynb
