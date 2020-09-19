@@ -9,6 +9,8 @@ jobs:
   algorithmia-CI-deployment:
     runs-on: ubuntu-latest
     steps:
+      env:
+        commit_msg: ${{ github.event.head_commit.message }}
       - name: Checkout Main Repo
         uses: actions/checkout@v2.0.0
         with:
@@ -23,6 +25,4 @@ jobs:
           # notebook_path: xgboost_on_algorithmia.ipynb
           # model_path: ./autodeployed_model.pkl
           # algorithmia_uploadpath: data://${{ env.ALGORITHMIA_USERNAME }}/${{ env.ALGORITHMIA_ALGONAME }}
-          extra: ${{ secrets.ALGORITHMIA_PASSWORD }}
-          extra2: ${{ secrets.GITHUB_REPOSITORY }}
-          commit_msg: ${{ github.event.head_commit.message }}
+          #commit_msg: ${{ github.event.head_commit.message }}
