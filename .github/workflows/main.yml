@@ -28,7 +28,6 @@ jobs:
           # Optional inputs with reasonable defaults
           # notebook_path: notebook_with.ipynb
           # model_path: model_with_specific_name.pkl
+          # algorithmia_algo_dir: algorithmia
           # algorithmia_uploadpath: data://${{ env.ALGORITHMIA_USERNAME }}/${{ env.ALGORITHMIA_ALGONAME }}
           
-          # TODO: Check with team & remove
-          # algorithmia_algo_dir: algorithmia
