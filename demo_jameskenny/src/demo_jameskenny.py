@@ -10,7 +10,7 @@ import hashlib
 
 client = Algorithmia.client()
 
-# Modified src through a submodule add on model training repo
+# Modified from within model dev repo.
 
 
 def load_model_config(config_rel_path="../model_config.json"):
