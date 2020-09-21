@@ -1,4 +1,4 @@
-# This file is edited manually in model dev repo.
+# Update just submodule
 algorithmia>=1.0.0,<2.0
 scikit-learn
 pandas
