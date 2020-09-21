@@ -18,16 +18,12 @@ jobs:
         env:
           HEAD_COMMIT_MSG: ${{ github.event.head_commit.message }}
         with:
-          # Required inputs
           algorithmia_api_key: ${{ secrets.ALGORITHMIA_API_KEY }}
           algorithmia_username: ${{ secrets.ALGORITHMIA_USERNAME }}
           algorithmia_email: ${{ secrets.ALGORITHMIA_EMAIL }}
           algorithmia_password: ${{ secrets.ALGORITHMIA_PASSWORD }}
           algorithmia_algoname:  demo_jameskenny
-
-          # Optional inputs with reasonable defaults
           # notebook_path: notebook_with.ipynb
           # model_path: model_with_specific_name.pkl
-          # algorithmia_algo_dir: algorithmia
           # algorithmia_uploadpath: data://${{ env.ALGORITHMIA_USERNAME }}/${{ env.ALGORITHMIA_ALGONAME }}
           
