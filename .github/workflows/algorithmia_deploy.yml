@@ -1,12 +1,12 @@
-name: Deploy to Algorithmia
+name: Publish on Algorithmia
 
 on:
   push:
     branches:
-      - master
+      - algorithmia_prod
 
 jobs:
-  algorithmia-CI-deployment:
+  algorithmia-publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Main Repo
