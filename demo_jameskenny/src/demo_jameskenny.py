@@ -10,6 +10,8 @@ import hashlib
 
 client = Algorithmia.client()
 
+# Modified standalone py in model dev repo.
+
 
 def load_model_config(config_rel_path="../model_config.json"):
     """Loads the model manifest file as a dict.
