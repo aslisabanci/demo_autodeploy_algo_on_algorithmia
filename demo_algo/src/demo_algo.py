@@ -8,7 +8,7 @@ import xgboost
 import pandas as pd
 import hashlib
 
-client = Algorithmia.client("sim0/CA0mCa6Xz3FAkyoHb45G5I1")
+client = Algorithmia.client("")
 
 
 def load_model_config(config_rel_path="../model_config.json"):
