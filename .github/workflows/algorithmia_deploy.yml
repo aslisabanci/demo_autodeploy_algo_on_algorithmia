@@ -23,7 +23,7 @@ jobs:
           algorithmia_username: ${{ secrets.ALGORITHMIA_USERNAME }}
           algorithmia_email: ${{ secrets.ALGORITHMIA_EMAIL }}
           algorithmia_password: ${{ secrets.ALGORITHMIA_PASSWORD }}
-          algorithmia_algoname:  demo_jameskenny
+          algorithmia_algoname:  demo_gh
           # notebook_path: notebook_with.ipynb
           # model_path: model_with_specific_name.pkl
           # algorithmia_uploadpath: data://${{ env.ALGORITHMIA_USERNAME }}/${{ env.ALGORITHMIA_ALGONAME }}
@@ -34,5 +34,4 @@ jobs:
         # with:
         #   algorithmia_api_key: ...
         #   version_schema: minor? major?
-        #   algorithm_tests_dir: ?
         
