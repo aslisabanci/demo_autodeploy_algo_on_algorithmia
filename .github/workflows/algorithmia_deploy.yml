@@ -1,12 +1,13 @@
-name: Publish on Algorithmia
+name: Deploy to Algorithmia
 
 on:
   push:
     branches:
-      - algorithmia_prod
+      - master
+      - prod_algorithmia
 
 jobs:
-  algorithmia-publish:
+  algorithmia-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Main Repo
@@ -26,4 +27,12 @@ jobs:
           # notebook_path: notebook_with.ipynb
           # model_path: model_with_specific_name.pkl
           # algorithmia_uploadpath: data://${{ env.ALGORITHMIA_USERNAME }}/${{ env.ALGORITHMIA_ALGONAME }}
-          
+      - name: Publish on Algorithmia
+        if: github.ref == 'refs/heads/prod_algorithmia'
+        run: echo "I am triggered on prod_algorithmia branch"
+        # uses: PUBLISH ACTION REF here - TO BE IMPLEMENTED
+        # with:
+        #   algorithmia_api_key: ...
+        #   version_schema: minor? major?
+        #   algorithm_tests_dir: ?
+        
