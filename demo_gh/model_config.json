@@ -1,0 +1,9 @@
+{
+    "model_filepath": "asli/demo_gh/algorithmia_model_7de39c17f091f737265b25c34ef44d0315695a5d.pkl",
+    "model_md5_hash": "a9983761238e4cbe691ab0e3c0a85bcd",
+    "model_origin_commit_SHA": "7de39c17f091f737265b25c34ef44d0315695a5d",
+    "model_origin_commit_msg": "Connecting to a new algo",
+    "model_origin_repo": "aslisabanci/demo_autodeploy_algo_on_algorithmia",
+    "model_origin_ref": "refs/heads/master",
+    "model_uploaded_utc": "2020-09-22 04:26:12.095370"
+}
