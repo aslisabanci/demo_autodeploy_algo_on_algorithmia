@@ -1,9 +1,0 @@
-{
-    "model_filepath": "asli/demo_algo/algorithmia_model_02943996e4f7a1bd174a2394a4d37870bf183f80.pkl",
-    "model_md5_hash": "48c0b51addda59ef1d811bed2698e007",
-    "model_origin_commit_SHA": "02943996e4f7a1bd174a2394a4d37870bf183f80",
-    "model_origin_commit_msg": "Fixed workflow yaml",
-    "model_origin_repo": "aslisabanci/demo_autodeploy_algo_on_algorithmia",
-    "model_origin_ref": "refs/heads/master",
-    "model_uploaded_utc": "2020-09-22 17:23:53.857452"
-}

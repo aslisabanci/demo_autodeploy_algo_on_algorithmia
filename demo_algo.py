@@ -1,4 +1,8 @@
-# This script is a standalone .py file and edited manually in model dev repo.
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[41]:
+
 
 import Algorithmia
 import json
@@ -8,24 +12,26 @@ import xgboost
 import pandas as pd
 import hashlib
 
-client = Algorithmia.client("")
+
+# In[20]:
 
 
-def load_model_config(config_rel_path="../model_config.json"):
-    """Loads the model manifest file as a dict.
+client = Algorithmia.client("sim0/CA0mCa6Xz3FAkyoHb45G5I1")
+
+def load_model_config(config_rel_path="model_config.json"):
+    """Loads the model manifest file as a dict. 
     A manifest file has the following structure:
     {
       "model_filepath": Uploaded model path on Algorithmia data collection
       "model_md5_hash": MD5 hash of the uploaded model file
       "model_origin_repo": Model development repository having the Github CI workflow
-      "model_origin_ref": Ref of the model dev repo, eg. master/feature/prod, etc.
       "model_origin_commit_SHA": Commit SHA related to the trigger of the CI workflow
       "model_origin_commit_msg": Commit message related to the trigger of the CI workflow
       "model_uploaded_utc": UTC timestamp of the automated model upload
     }
     """
     config = []
-    config_path = "{}/{}".format(os.path.dirname(__file__), (config_rel_path))
+    config_path = "{}/{}".format(os.getcwd(), (config_rel_path))
     if os.path.exists(config_path):
         with open(config_path) as json_file:
             config = json.load(json_file)
@@ -38,7 +44,6 @@ def load_model(config):
     model_file = client.file(model_path).getFile().name
     model_obj = joblib.load(model_file)
     return model_file, model_obj
-
 
 def assert_model_md5(model_file):
     """
@@ -55,10 +60,10 @@ def assert_model_md5(model_file):
         md5_hash = hasher.hexdigest()
     assert config["model_md5_hash"] == md5_hash
     print("Model file MD5 assertion done.")
-
-
+    
 def assert_model_pipeline_steps(model_obj):
-    """For demonstration purposes, asserts that the XGBoost model has the expected pipeline steps."""
+    """For demonstration purposes, asserts that the XGBoost model has the expected pipeline steps.
+    """
     assert model_obj.steps[0][0] == "vect"
     assert model_obj.steps[1][0] == "tfidf"
     assert model_obj.steps[2][0] == "model"
@@ -78,11 +83,24 @@ def apply(input):
     series_input = pd.Series([input])
     result = xgb_obj.predict(series_input)
     return {
-        "sentiment": result.tolist()[0],
+        "sentiment": result.tolist()[0], 
         "predicting_model_metadata": {
             "model_file": config["model_filepath"],
-            "origin_repo": config["model_origin_repo"],
-            "origin_commit_SHA": config["model_origin_commit_SHA"],
-            "origin_commit_msg": config["model_origin_commit_msg"],
-        },
+            "origin_repo": config["model_origin_repo"], 
+            "origin_commit_SHA": config["model_origin_commit_SHA"], 
+            "origin_commit_msg": config["model_origin_commit_msg"]
+        }
     }
+
+
+# In[40]:
+
+
+if __name__ == "__main__":
+    import pprint as pp
+    algo_input = "This guitar is great!"
+    pp.pprint(f"Calling algorithm apply() func with input: {algo_input}")
+
+    algo_result = apply(algo_input)
+    pp.pprint(algo_result)
+

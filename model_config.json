@@ -1,0 +1,8 @@
+{
+    "model_filepath": "asli/xgboost_automated/autodeployed_model_348410b2f7071377de060f030cca7d984b0f2dca.pkl",
+    "model_origin_commit_SHA": "348410b2f7071377de060f030cca7d984b0f2dca",
+    "model_origin_commit_msg": "Reverted multiple workflow testing",
+    "model_origin_repo": "aslisabanci/demo_autodeploy_algo_on_algorithmia",
+    "model_uploaded_utc": "2020-09-16 17:10:58.454731",
+    "model_md5_hash": "e669c7cdb215e612286e1f64b7080106"
+}
