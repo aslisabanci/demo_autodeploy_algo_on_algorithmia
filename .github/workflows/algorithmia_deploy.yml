@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - prod_algorithmia
 
 jobs:
   algorithmia-deploy:
@@ -23,15 +22,8 @@ jobs:
           algorithmia_username: ${{ secrets.ALGORITHMIA_USERNAME }}
           algorithmia_email: ${{ secrets.ALGORITHMIA_EMAIL }}
           algorithmia_password: ${{ secrets.ALGORITHMIA_PASSWORD }}
-          algorithmia_algoname:  demo_algo
-          # notebook_path: notebook_with.ipynb
-          # model_path: model_with_specific_name.pkl
+          algorithmia_algoname:  xgboost_automated
+          # notebook_path: model.ipynb
+          # model_path: model.pkl
           # algorithmia_uploadpath: data://${{ env.ALGORITHMIA_USERNAME }}/${{ env.ALGORITHMIA_ALGONAME }}
-      - name: Publish on Algorithmia
-        if: github.ref == 'refs/heads/prod_algorithmia'
-        run: echo "I am triggered on prod_algorithmia branch"
-        # uses: PUBLISH ACTION REF here - TO BE IMPLEMENTED
-        # with:
-        #   algorithmia_api_key: ...
-        #   version_schema: minor? major?
         
