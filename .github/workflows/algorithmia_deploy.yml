@@ -23,6 +23,7 @@ jobs:
           algorithmia_email: ${{ secrets.ALGORITHMIA_EMAIL }}
           algorithmia_algoname:  xgboost_automated
           algorithmia_password: ${{ secrets.ALGORITHMIA_PASSWORD }}
+          git_host: git.algorithmia.com
           # notebook_path: model.ipynb
           # model_path: model.pkl
           # algorithmia_uploadpath: data://${{ env.ALGORITHMIA_USERNAME }}/${{ env.ALGORITHMIA_ALGONAME }}
